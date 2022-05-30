@@ -1,7 +1,6 @@
 package com.devsuperior.bds02.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +29,11 @@ public class CityService {
 
 	}
 
-	@Transactional(readOnly = true)
-	public CityDTO findById(Long id) {
-		Optional<City> obj = repository.findById(id);
-		City entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new CityDTO(entity);
-
-	}
-
 	@Transactional
 	public CityDTO insert(CityDTO dto) {
 		City entity = new City();
 		entity.setName(dto.getName());
+		entity = repository.save(entity);
 		return new CityDTO(entity);
 	}
 

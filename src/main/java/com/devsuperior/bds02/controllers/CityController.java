@@ -29,12 +29,6 @@ public class CityController {
 		List<CityDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<CityDTO> findById(@PathVariable Long id) {
-		CityDTO dto = service.findById(id);
-		return ResponseEntity.ok().body(dto);
-	}
 
 	@PostMapping
 	public ResponseEntity<CityDTO> insert(@RequestBody CityDTO dto) {
